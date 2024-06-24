@@ -1,3 +1,20 @@
+## 📋 Work flow for building project managment app:
+
+1. Create 'component' folder.
+2. Create ProjectSidebar.jsx file
+   * Inside create <aside> element
+
+
+
+
+
+
+
+
+
+---
+<br>
+
 ![Project Management3](https://github.com/shanibider/React-project-management/assets/72359805/213d0f3d-fc5b-4ab9-8d55-041ac6c5c841)
 
 ![Project Management2](https://github.com/shanibider/React-project-management/assets/72359805/0244802e-6ce3-4e5c-81f0-6dbad51c4cf3)
