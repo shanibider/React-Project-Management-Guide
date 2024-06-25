@@ -1,6 +1,9 @@
+// Creating a new component to display when no project is selected
+
 import noProjectImage from '../assets/no-projects.png';
 import Button from './Button.jsx';
 
+// Accept and destructure the prop onStartAddProject from App
 export default function NoProjectSelected({ onStartAddProject }) {
   return (
     <div className="mt-24 text-center w-2/3">
@@ -16,6 +19,9 @@ export default function NoProjectSelected({ onStartAddProject }) {
         Select a project or get started with a new one
       </p>
       <p className="mt-8">
+      {/* Here i previously add button with the same classes as in `ProjectsSidebar` component,
+      Therefore I make it a seperate component.
+      Then add `onStartAddProject` prop */}
         <Button onClick={onStartAddProject}>Create new project</Button>
       </p>
     </div>

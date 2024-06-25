@@ -1,10 +1,9 @@
 import { useRef } from 'react';
-
 import Input from './Input.jsx';
 import Modal from './Modal.jsx';
 
 export default function NewProject({ onAdd, onCancel }) {
-  const modal = useRef();
+  const modal = useRef(); // Connected to my own Modal component.
 
   const title = useRef();
   const description = useRef();
@@ -15,11 +14,13 @@ export default function NewProject({ onAdd, onCancel }) {
     const enteredDescription = description.current.value;
     const enteredDueDate = dueDate.current.value;
 
+    // Valaidate input fields
     if (
       enteredTitle.trim() === '' ||
       enteredDescription.trim() === '' ||
       enteredDueDate.trim() === ''
     ) {
+      // Show the error modal
       modal.current.open();
       return;
     }
@@ -33,6 +34,7 @@ export default function NewProject({ onAdd, onCancel }) {
 
   return (
     <>
+    {/* Add Modal. Connect it to a ref. */}
       <Modal ref={modal} buttonCaption="Okay">
         <h2 className="text-xl font-bold text-stone-700 my-4">Invalid Input</h2>
         <p className="text-stone-600 mb-4">

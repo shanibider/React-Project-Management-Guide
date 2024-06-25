@@ -1,5 +1,6 @@
 import Button from './Button.jsx';
 
+// Accept and destructe `projects` props.
 export default function ProjectsSidebar({ onStartAddProject, projects }) {
   return (
     <aside className="w-1/3 px-8 py-16 bg-stone-900 text-stone-50 md:w-72 rounded-r-xl">
@@ -9,6 +10,7 @@ export default function ProjectsSidebar({ onStartAddProject, projects }) {
       <div>
         <Button onClick={onStartAddProject}>+ Add Project</Button>
       </div>
+      {/* map through projects array such that everey project will be jsx element; a button. */}
       <ul className="mt-8">
         {projects.map((project) => (
           <li key={project.id}>

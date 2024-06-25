@@ -11,6 +11,7 @@ Working with Components, State, Styling and Portals;
 
 function App() {
   return (
+    // adding tailwind classes to the main element - take all the height of the screen and add margin top and bottom
     <main className="h-screen my-8">
       <ProjectsSidebar />
     </main>

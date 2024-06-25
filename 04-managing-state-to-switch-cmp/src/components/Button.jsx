@@ -1,3 +1,8 @@
+// Creating a Button component to use in multiple places, 
+// to avoid repeating the same code.
+// The content should be flexible and passed as children.
+// Button should collect all other props that might be set, and then spread them on the button element.
+// So later we can add for example the onChange prop.
 export default function Button({ children, ...props }) {
   return (
     <button
