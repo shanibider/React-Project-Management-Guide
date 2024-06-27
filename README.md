@@ -1,4 +1,15 @@
-## 📋 Work flow for building project managment app:
+# React Project Management Web App 🖊
+Focus on: 
+- [x] Build, Style, Configure & Re-use **`Components`**.
+- [x] Manage **`State`**.
+- [x] Access DOM Elements & Browser APIs with **`Refs`**.
+- [x] Manage JSX Rendering Positions with **`Portals`**.
+
+
+
+---
+
+# 📋 Work flow for building project managment app:
 1. Create **component** folder.
 
 2. Add `ProjectSidebar` component
