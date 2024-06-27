@@ -24,7 +24,8 @@ const Modal = forwardRef(function Modal({ children, buttonCaption }, ref) {
   });
 
   return createPortal(
-    // Add styles to dialog.
+    // Add styles to dialog, and form, and use the Button component.
+    // Text color is changed in NewProject
     <dialog
       ref={dialog}
       className="backdrop:bg-stone-900/90 p-4 rounded-md shadow-md"

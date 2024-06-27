@@ -1,4 +1,9 @@
+// Making project selectable
+
+// Expect to get project prop
 export default function SelectedProject({ project }) {
+
+  // Format with toLocaleDateString
   const formattedDate = new Date(project.dueDate).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'short',

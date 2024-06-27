@@ -19,6 +19,8 @@ function App() {
     });
   }
 
+  // 1. Cancel the creation of new project.
+  // Same code as above function, but selectedProjectId is set to undefined.
   function handleCancelAddProject() {
     setProjectsState((prevState) => {
       return {
@@ -47,6 +49,7 @@ function App() {
   let content;
 
   if (projectsState.selectedProjectId === null) {
+    // 2. Add `handleCancelAddProject` function to onCancel prop.
     content = (
       <NewProject onAdd={handleAddProject} onCancel={handleCancelAddProject} />
     );

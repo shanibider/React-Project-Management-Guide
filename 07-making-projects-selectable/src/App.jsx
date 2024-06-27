@@ -11,6 +11,8 @@ function App() {
     projects: [],
   });
 
+  // Add this function with project id as a value,
+  // And update the selectedProjectId in the state
   function handleSelectProject(id) {
     setProjectsState((prevState) => {
       return {
@@ -54,11 +56,14 @@ function App() {
     });
   }
 
+  // Finding an element in an array by ID.
   const selectedProject = projectsState.projects.find(
     (project) => project.id === projectsState.selectedProjectId
   );
 
+  // Make content get deafult value. Recieve `selectedProject` through `project` prop.
   let content = <SelectedProject project={selectedProject} />;
+
 
   if (projectsState.selectedProjectId === null) {
     content = (
@@ -68,8 +73,10 @@ function App() {
     content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
   }
 
+
   return (
     <main className="h-screen my-8 flex gap-8">
+    {/* `handleSelectProject` function passed as a prop value to <ProjectsSidebar>. */}
       <ProjectsSidebar
         onStartAddProject={handleStartAddProject}
         projects={projectsState.projects}
