@@ -22,6 +22,7 @@ export default function SelectedProject({ project }) {
           </button>
         </div>
         <p className="mb-4 text-stone-400">{formattedDate}</p>
+        {/* whitespace-pre-wrap means that line space will be kept and not removed. */}
         <p className="text-stone-600 whitespace-pre-wrap">
           {project.description}
         </p>

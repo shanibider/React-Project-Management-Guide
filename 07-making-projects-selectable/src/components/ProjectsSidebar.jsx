@@ -21,14 +21,18 @@ export default function ProjectsSidebar({
       <ul className="mt-8">
       {/* Render this css classes dynamically */}
         {projects.map((project) => {
+          // Create a variable to store css classes.
           let cssClasses = "w-full text-left px-2 py-1 rounded-sm my-1 hover:text-stone-200 hover:bg-stone-800";
 
+          // Check if the project.id I currently outputting is equal to the selectedProjectId I get as a prop.
           if (project.id === selectedProjectId) {
-            cssClasses += ' bg-stone-800 text-stone-200'  // highlight
+             // important to keep white space before the class name.
+            cssClasses += ' bg-stone-800 text-stone-200'  // If so, highlight with background color and text color.
           } else {
-            cssClasses += ' text-stone-400' // important to keep white space
+            cssClasses += ' text-stone-400'
           }
 
+          // Add return statement inside map, that I can conveniently add more code in the function that pass to map.
           return (
             <li key={project.id}>
             {/* Connect `onSelectProject` to the button, with onClick. */}
