@@ -1,15 +1,14 @@
 # React Project Management Web App 🖊
-Focus on: 
+This project focus on: 
 - [x] Build, Style, Configure & Re-use **`Components`**.
 - [x] Manage **`State`**.
 - [x] Access DOM Elements & Browser APIs with **`Refs`**.
 - [x] Manage JSX Rendering Positions with **`Portals`**.
-
-
-
 ---
 
 # 📋 Work flow for building project managment app:
+- Read the instructions next to the code.
+  
 1. Create **component** folder.
 
 2. Add `ProjectSidebar` component
@@ -75,17 +74,67 @@ Looks like this:
 
 
 14. Making projects selectebale & viewing project details:
-     * Create `SelectedProject` component, return `<header>`, `<h1>`, and `<button>`.
-     * Expect to get `project` prop.
-     * Format `project.dueDate`.
-     *  Add style via tailwind 
+     * Create `SelectedProject` component, return `<header>`, `<h1>`, and `<button>` to delete this project, in one `<div>`.
+     * Expect to get `project` prop, and in the rendered code output {project.title}, formated `{project.dueDate}`, and `{project.description}`.
+     * Add style via tailwind.
+     * I must sure that project can be selected in the sidebar, for that i must make sure that the button change some `state` in `App,jsx`.
+     * I add another function in App: `handleSelectProject`, with project `id` as a value, and update the state of `selectedProjectId` with the `id`.
+     * This `handleSelectProject` pass to <ProjectsSidebar> in the rendered code, with a new `onSelectProject` prop.
+     * Now, inside `ProjectsSidebar` i should extract `selectedProjectId` from the incoming props, and connect it to the button in this component, with `onClick` prop with `onSelectProject` as a value.
+     * In addition, I also want to highlight the button of the project that was selected so I will extract also `selectedProjectId`, so I will use this prop that contain the `id` of the project that was selected.
+     * I will add return statement inside map, that I can conveniently add more code in the function that pass to map, depending if the element should be highlighted or not.
+     * Create a variable to store css classes, check if the `project.id` I currently outputting is equal to the `selectedProjectId` I get as a prop. Now i use `{cssClasses}` as a value for `{className}` prop.
+     * Last step, is to add the newly added `selectedProject componenet` and output it in the `App` component, if a project was selected;
+     * I declare `content` variable to be equal to `<SelectedProject project={selectedProject} />`, now I need to derive the selected project from the `state`;
+     * I find it with ```const selectedProject = projectsState.projects.find((project) => project.id === projectsState.selectedProjectId);```.
+     * Now, if i click on a project in `side bar`, the app failed. The reason is inside `App`.
+     * Project Details: For now i just passing `onSelectProject` function to `onSelectProject` prop, but in `ProjectsSidebar.jsx` I use `onSelectProject` prop that contain the function mention above, and I just pass this ahead to the button. And the button don't give the `id` of the selected project. Therefore, more control of how it will be executed is needed;
+     * By wrapping this with a function, and manually calling it inside of this function so I can pass the `id` of the project that currently being rendered as a value to `onSelectProject`, and therfore as a value to `handleSelectProject` function.
+```jsx
+// So this:
+onClick={onSelectProject}
+
+// Become this:
+onClick={() => onSelectProject(project.id)}
+```
+![Project Management4](https://github.com/shanibider/React-project-management/assets/72359805/24d0724d-31d6-4960-84e9-b8339c015350)
+<br>
 
 
-15. Handling Project Deletion
+15. Handling Project Deletion:
+    * As before, I need to add a functn to `App.jsx`, a function which update the `state`, and remove the project from the array, and I need to pass that function to `SelectedProject` component.
+    * Add `handleDeleteProject` function, that update the state as the other function. Then filter out the selected project from the projects array.
+    * Pass a pointer to `handleDeleteProject` function with `onDelete` prop. So I can call this function through the `onDelete` prop from inside `SelectedProject` component.
+    * Inside `SelectedProject` I extract this newly added `onDelete` prop, and than connect it to the `delete button`, like this: ```onClick={onDelete}```.
 
-16. Adding "Project Tasks" & A Tasks Component
 
-17. Managing Tasks & Understanding Prop Drilling
+16. Adding "Project Tasks" & A Tasks Component:
+    * Add new `Task` component with `h2`, **NEW TASK** placeholder (which will be replaced by input and button), `p`, `ul`, and styling.
+    * Then  i use `<Tasks />` inside `SelctedProject` component.
+    * Now i replace **NEW TASK** placeholder with actual input, and a button.
+    * Add `NewTask` component. Including `input`, `button`, and styling including flex-box since I want the 2 elements next to each other.
+   
+      
+17. Managing Tasks & Understanding Prop Drilling;
+    * Now I want to make sure that the added task will be shown. I can do it with a `ref`, but i will use `state` (`[enteredTask, setEnteredTask]`), inside `NewTask`.
+    * Add `handleChange` function that connect to the input field to update the entered task. This function get an `event` object as a parameter, that have `target` which is the input field, and value which is the `value` of the input field. (`event.target.value`).
+    * Then I add `onChange` prop to connect it to the `handleChange` function. (`<input onChange={handleChange}` />).
+    * To complete the two way binding, using `value={enteredTask}`, by feeding the entered task text into the input field. (`<input value={enteredTask}` />).
+    * Now I want to make sure that when pressing the `Add Task` button the entered task is added to a place it can be stored.
+    * It will be in `App`, as I already store there all the projects.
+    * So inside `App` I add `tasks: [],` to the `projectsState` object.
+    * Therfore I will add 2 new function for handling tasks: `handleAddTask()`, and `handleDeleteTask()`.
+    * Inside `NewTask` I add `handleClick()` function, as long as `onClick={handleClick}`.
+    *  Inside, I want to forward the entered value to the app component (`onAdd(enteredTask);`),
+    *  Then I want to reset it back to an empty string (`setEnteredTask('');`).
+  
+   
+![Project Management5](https://github.com/shanibider/React-project-management/assets/72359805/099d1eef-faef-4b95-9f9e-ab3d9fc04f60)   
+ 
+
+
+
+
 
 19. Clearing Tasks & Fixing Minor Bugs
 
@@ -126,6 +175,4 @@ Looks like this:
 
 ![Project Management2](https://github.com/shanibider/React-project-management/assets/72359805/0244802e-6ce3-4e5c-81f0-6dbad51c4cf3)
 
-![Project Management4](https://github.com/shanibider/React-project-management/assets/72359805/24d0724d-31d6-4960-84e9-b8339c015350)
 
-![Project Management5](https://github.com/shanibider/React-project-management/assets/72359805/099d1eef-faef-4b95-9f9e-ab3d9fc04f60)
