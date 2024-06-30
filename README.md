@@ -123,46 +123,30 @@ onClick={() => onSelectProject(project.id)}
     * Now I want to make sure that when pressing the `Add Task` button the entered task is added to a place it can be stored.
     * It will be in `App`, as I already store there all the projects.
     * So inside `App` I add `tasks: [],` to the `projectsState` object.
-    * Therfore I will add 2 new function for handling tasks: `handleAddTask()`, and `handleDeleteTask()`.
+    * Therefore I will add 2 new function for handling tasks: `handleAddTask()`, and `handleDeleteTask()`.
     * Inside `NewTask` I add `handleClick()` function, as long as `onClick={handleClick}`.
-    *  Inside, I want to forward the entered value to the app component (`onAdd(enteredTask);`),
-    *  Then I want to reset it back to an empty string (`setEnteredTask('');`).
-  
+    * Inside `handleClick()`, I want to forward the entered value to the app component (`onAdd(enteredTask);`), and then I want to reset it back to an empty string (`setEnteredTask('');`).
+    * Now i need to get the entered task to the app component.
+    * I need to pass `handleAddTask()` to `NewTask` component. And `NewTask` is in `Task` component, and `Task` component is inside `SelectedProject` component. It's invovled prop drilling.
+      * So let's start: In `App`, add `handleAddTask` as  a value to `SelectedProject`, in `onAddTask` prop. The same for `handleDeleteTask`.
+      * I will use this function in `Task`, that called from `SelectedProject`, that's why I write it there.
+      * On `SelectedProject` extract `onAddTask`, and `onDeleteTask`, in order to forward them inside to `Task`.
+      * In `Task` also destructing `onAddTask`, and `onDeleteTask` props that just being added.
+      * Then `onAddTask` will be forward to `<NewTask />`, and `onDeleteTask` will be use inside the current component.
+      * Inside `NewTask` destrcuturing the `onAdd` function from the props object.
+      * Inside `handleClick` in `NewTask`, forward the entered task to the onAdd function. (That will go to `Task`, which in the end is in `SelectedProject`, which than is in `App`)ץ
+      * Few more steps with `tasks`...
+   
    
 ![Project Management5](https://github.com/shanibider/React-project-management/assets/72359805/099d1eef-faef-4b95-9f9e-ab3d9fc04f60)   
  
 
 
-
-
-
-19. Clearing Tasks & Fixing Minor Bugs
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+18. Clearing Tasks & Fixing Minor Bugs:
+    * Now i want to make sure that `clear` button on each task will perform his purpose. Add `handleDeleteTask` in `App`.
+    * Add `handleDeleteTask` function to `onDeleteTask` prop, as value to `<SelectedProject />`.
+    * Inside `Tasks` destruct `onDelete` prop, in order to connect it to `delete` button.
+    * On `button` add `onClick={onDelete}`, but wrap it in a function for full control of execution like this: `onClick={() => onDelete(task.id)}`.
 
 
 
