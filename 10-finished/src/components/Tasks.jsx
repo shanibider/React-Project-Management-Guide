@@ -1,5 +1,6 @@
 import NewTask from './NewTask.jsx';
 
+// Destruct onDelete from props.
 export default function Tasks({ tasks, onAdd, onDelete }) {
   return (
     <section>
@@ -15,6 +16,7 @@ export default function Tasks({ tasks, onAdd, onDelete }) {
           {tasks.map((task) => (
             <li key={task.id} className="flex justify-between my-4">
               <span>{task.text}</span>
+              {/* Add `onClick={onDelete}`, but wrap it in a function for full control of execution. */}
               <button
                 className="text-stone-700 hover:text-red-500"
                 onClick={() => onDelete(task.id)}

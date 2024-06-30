@@ -28,6 +28,8 @@ function App() {
     });
   }
 
+  // Add this function, that get the id of the task to delete.
+  // Filter the tasks array to remove the task with the id.
   function handleDeleteTask(id) {
     setProjectsState((prevState) => {
       return {
@@ -96,6 +98,7 @@ function App() {
     (project) => project.id === projectsState.selectedProjectId
   );
 
+  // Add `handleDeleteTask` function to `onDeleteTask` prop.
   let content = (
     <SelectedProject
       project={selectedProject}
@@ -114,6 +117,9 @@ function App() {
     content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
   }
 
+
+  {/* Another bug to fix is to make the selected project highlight in the side bar.
+    Therefore i add `selectedProjectId`*/}
   return (
     <main className="h-screen my-8 flex gap-8">
       <ProjectsSidebar

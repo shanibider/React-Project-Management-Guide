@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 export default function NewTask({ onAdd }) {
+  // Add empty string, to prevent controlled/uncontrolled input warning.
   const [enteredTask, setEnteredTask] = useState('');
 
   function handleChange(event) {
@@ -8,8 +9,9 @@ export default function NewTask({ onAdd }) {
   }
 
   function handleClick() {
+    // Trim the entered task to prevent adding empty tasks.
     if (enteredTask.trim() === '') {
-      return;
+      return; // return so the below code does not execute.
     }
     onAdd(enteredTask);
     setEnteredTask('');

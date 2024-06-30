@@ -1,5 +1,6 @@
 import Tasks from './Tasks.jsx';
 
+// Extract the newly added 2 props
 export default function SelectedProject({
   project,
   onDelete,
@@ -32,6 +33,7 @@ export default function SelectedProject({
           {project.description}
         </p>
       </header>
+      {/* Forward the extracted 2 props to `Tasks` */}
       <Tasks onAdd={onAddTask} onDelete={onDeleteTask} tasks={tasks} />
     </div>
   );

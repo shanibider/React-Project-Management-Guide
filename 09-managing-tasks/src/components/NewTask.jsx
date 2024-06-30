@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+// 6. (After several steps) Destrcuturing the onAdd function from the props object.
 export default function NewTask({ onAdd }) {
 // 1. Add state to manage the added task that the user enters in the input field to be shown in the list of tasks.
   const [enteredTask, setEnteredTask] = useState();
@@ -18,6 +19,8 @@ export default function NewTask({ onAdd }) {
   // Inside, I want to forward the entered value to the app component, 
   // Then I want to reset it back to an empty string.
   function handleClick() {
+    // 7. Forward the entered task to the onAdd function.
+    // (That will go to `Task`, which in the end is in `SelectedProject`, which than is in `App`)
     onAdd(enteredTask);
     setEnteredTask('');
   }

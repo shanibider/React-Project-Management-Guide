@@ -12,6 +12,9 @@ function App() {
     tasks: [],
   });
 
+  // Add this 2 functions to manage the tasks.
+  // 8. Get text as an input, copy the logic of adding a new project.
+  // Set `text` from input to text field. Also extract the id from prevState.
   function handleAddTask(text) {
     setProjectsState((prevState) => {
       const taskId = Math.random();
@@ -36,6 +39,8 @@ function App() {
       };
     });
   }
+
+
 
   function handleSelectProject(id) {
     setProjectsState((prevState) => {
@@ -96,6 +101,7 @@ function App() {
     (project) => project.id === projectsState.selectedProjectId
   );
 
+  // Add 2 new props `onAddTask`, and `onDeleteTask`
   let content = (
     <SelectedProject
       project={selectedProject}
